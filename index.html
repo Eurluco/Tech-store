@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech & Style Store | Catalogue Produits</title>
+
+    <!-- Style DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <!-- Style personnalisé -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- EN-TÊTE & LOGO -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo-link">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&q=80" alt="Logo Boutique" class="logo-img" id="siteLogo">
+                <span>TechStyle Store</span>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#catalogue-cards">Vitrine</a></li>
+                    <li><a href="#catalogue-table">Recherche</a></li>
+                    <li><a href="#panier" class="cart-btn-link">🛒 Panier (<span id="cartCount">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BANNIÈRE HERO -->
+    <section class="hero fade-in">
+        <div class="container">
+            <h1>Catalogue Général & Commande en Ligne</h1>
+            <p>Découvrez nos articles phares : Composants, Mode, High-Tech et Accessoires.</p>
+            <a href="#catalogue-cards" class="btn btn-hero">Explorer les Produits</a>
+        </div>
+    </section>
+
+    <!-- SECTION 1 : VITRINE EN CARTES (Rotation Automatique 5 par 5) -->
+    <section id="catalogue-cards" class="container">
+        <h2 class="section-title">En Vedette</h2>
+        <p class="section-subtitle">Défilement automatique par lot de 5 toutes les 8 secondes.</p>
+
+        <div id="cardsGrid" class="cards-grid">
+            <!-- Injecté dynamiquement via JavaScript -->
+        </div>
+    </section>
+
+    <!-- SECTION 2 : RECHERCHE & DATATABLE COMPLÈTE EN BAS -->
+    <section id="catalogue-table" class="container" style="margin-top: 50px;">
+        <h2 class="section-title">Recherche & Catalogue Complet</h2>
+        <p class="section-subtitle">Utilisez la barre de recherche ou les filtres pour trouver un article précis parmi notre catalogue.</p>
+
+        <div class="table-responsive slide-up">
+            <table id="productsDataTable" class="display responsive nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Visuel</th>
+                        <th>Nom du Produit</th>
+                        <th>Catégorie</th>
+                        <th>Variantes & Options</th>
+                        <th>Prix</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableBody">
+                    <!-- Injecté dynamiquement via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SECTION PANIER ET VALIDATION DE LA COMMANDE -->
+    <section id="panier" class="container cart-section">
+        <h2 class="section-title">Votre Panier d'Achat</h2>
+        
+        <div class="cart-layout">
+            <div class="cart-items-container">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix U.</th>
+                            <th>Qté</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartTableBody">
+                        <!-- Généré dynamiquement -->
+                    </tbody>
+                </table>
+                <div id="emptyCartMsg" class="empty-msg">Votre panier est vide. Sélectionnez des produits ci-dessus.</div>
+            </div>
+
+            <div class="order-form-box">
+                <h3>Finaliser la Commande</h3>
+                <div class="total-summary">
+                    <span>Total Général :</span>
+                    <strong id="cartTotalAmount">$0.00</strong>
+                </div>
+
+                <div id="formAlert" class="alert" style="display: none;"></div>
+
+                <form id="checkoutForm" action="send_order.php" method="POST">
+                    <input type="hidden" name="cart_data" id="cartDataInput">
+
+                    <div class="form-group">
+                        <label for="client_name">Nom & Prénom * :</label>
+                        <input type="text" id="client_name" name="client_name" required placeholder="Ex: Jean Marc">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="client_phone">Téléphone / WhatsApp * :</label>
+                        <input type="tel" id="client_phone" name="client_phone" required placeholder="Ex: 034 XX XX XX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="client_email">Adresse E-mail :</label>
+                        <input type="email" id="client_email" name="client_email" placeholder="Ex: client@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Adresse de livraison :</label>
+                        <input type="text" id="address" name="address" placeholder="Ex: Quartier, Ville...">
+                    </div>
+
+                    <button type="submit" id="checkoutBtn" class="btn btn-order" disabled>Confirmer et Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; TechStyle Store. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS JQUERY & DATATABLES -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
